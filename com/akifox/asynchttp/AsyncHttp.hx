@@ -689,7 +689,9 @@ class AsyncHttp {
       if (!httpstatusDone) status = 200;
 
       var time = elapsedTime(start);
-      content = Bytes.ofString(e.target.data);
+      var action : String =  cast(e.currentTarget, URLLoader).data;
+      content = Bytes.ofString(action);
+      
       log('Response Complete $status ($time s)\n> ${request.method} ${request.url}', request.fingerprint);
       this.callback(request, time, url, headers, status, content);
       urlLoader = null;
